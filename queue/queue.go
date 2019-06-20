@@ -1,43 +1,43 @@
 package queue
 
-type node struct {
-	element interface{}
-	link    *node
+type Node struct {
+	Element interface{}
+	Link    *Node
 }
 
-type queue struct {
-	head *node
-	tail *node
-	n    int
+type Queue struct {
+	Head *Node
+	Tail *Node
+	N    int
 }
 
-func NewQueue() *queue {
-	return &queue{}
+func NewQueue() *Queue {
+	return &Queue{}
 }
 
-func (q *queue) Enqueue(data interface{}) {
-	item := &node{data, nil}
-	if q.tail == nil {
-		q.head = item
-		q.tail = item
+func (q *Queue) Enqueue(data interface{}) {
+	item := &Node{data, nil}
+	if q.Tail == nil {
+		q.Head = item
+		q.Tail = item
 	} else {
-		q.tail.link = item
-		q.tail = item
+		q.Tail.Link = item
+		q.Tail = item
 	}
-	q.n++
+	q.N++
 
 }
 
-func (q *queue) Dequeue() interface{} {
-	if q.head == nil {
+func (q *Queue) Dequeue() interface{} {
+	if q.Head == nil {
 		return nil
 	}
-	item := q.head
-	q.head = item.link
-	q.n--
-	return item.element
+	item := q.Head
+	q.Head = item.Link
+	q.N--
+	return item.Element
 }
 
-func (q *queue) Size() int {
-	return q.n
+func (q *Queue) Size() int {
+	return q.N
 }

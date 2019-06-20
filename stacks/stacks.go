@@ -1,54 +1,54 @@
-package stacks
+package Stacks
 
-type node struct {
-	element interface{}
-	link    *node
+type Node struct {
+	Element interface{}
+	Link    *Node
 }
 
-type stack struct {
-	head *node
-	n    int
+type Stack struct {
+	Head *Node
+	N    int
 }
 
-func NewLinkedStack() *stack {
-	return &stack{}
+func NewLinkedStack() *Stack {
+	return &Stack{}
 }
 
-func (s *stack) Push(data interface{}) {
-	item := &node{element: data, link: s.head}
-	s.head = item
-	s.n++
+func (s *Stack) Push(data interface{}) {
+	item := &Node{Element: data, Link: s.Head}
+	s.Head = item
+	s.N++
 }
-func (s *stack) Pop() interface{} {
-	if s.head == nil {
+func (s *Stack) Pop() interface{} {
+	if s.Head == nil {
 		return nil
 	}
-	item := s.head
-	s.head = item.link
-	s.n--
-	return item.element
+	item := s.Head
+	s.Head = item.Link
+	s.N--
+	return item.Element
 }
 
-func (s *stack) Size() int {
-	return s.n
+func (s *Stack) Size() int {
+	return s.N
 }
 
-type arrayStack struct {
-	container []interface{}
-	len       int
+type ArrayStack struct {
+	Container []interface{}
+	Len       int
 }
 
-func NewArrayStack() *arrayStack {
-	return &arrayStack{nil, 0}
+func NewArrayStack() *ArrayStack {
+	return &ArrayStack{nil, 0}
 }
 
-func (s *arrayStack) Push(data interface{}) {
-	s.container = append(s.container, data)
-	s.len++
+func (s *ArrayStack) Push(data interface{}) {
+	s.Container = append(s.Container, data)
+	s.Len++
 }
-func (s *arrayStack) Pop() interface{} {
-	item := s.container[s.len-1]
-	s.container = s.container[:s.len-1]
-	s.len--
+func (s *ArrayStack) Pop() interface{} {
+	item := s.Container[s.Len-1]
+	s.Container = s.Container[:s.Len-1]
+	s.Len--
 	return item
 }
